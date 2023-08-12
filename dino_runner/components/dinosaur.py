@@ -70,6 +70,7 @@ class Dinosaur:
             self.dino_rect.x = X_POS
             self.dino_rect.y = Y_POS_DUCK
             self.step_index += 1
+            self.dino_duck = False
 
 
     def draw(self, screen):
