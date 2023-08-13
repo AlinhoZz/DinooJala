@@ -7,6 +7,8 @@ SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 FPS = 45
 BIRD_Y_POS = 260
+Y_POS_SMALL_CACTUS = 325
+Y_POS_LARGE_CACTUS = 300
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 
 # Assets Constants

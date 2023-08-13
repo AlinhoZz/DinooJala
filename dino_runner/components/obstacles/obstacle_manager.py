@@ -3,7 +3,7 @@ import random
 
 from dino_runner.components.obstacles.bird import Bird
 from dino_runner.components.obstacles.cactus import Cactus
-from dino_runner.utils.constants import SMALL_CACTUS, LARGE_CACTUS, BIRD
+from dino_runner.utils.constants import SMALL_CACTUS, LARGE_CACTUS, BIRD, Y_POS_SMALL_CACTUS, Y_POS_LARGE_CACTUS
 
 
 
@@ -19,10 +19,10 @@ class ObstacleManager:
             self.random_obs = random_obs
 
             if random_obs == 0:
-                self.obstacles.append(Cactus(SMALL_CACTUS))
+                self.obstacles.append(Cactus(SMALL_CACTUS, Y_POS_SMALL_CACTUS))
 
             elif random_obs == 1:
-                self.obstacles.append(Cactus(LARGE_CACTUS))
+                self.obstacles.append(Cactus(LARGE_CACTUS, Y_POS_LARGE_CACTUS))
 
             elif random_obs == 2:
                 self.obstacles.append(Bird(BIRD))   
