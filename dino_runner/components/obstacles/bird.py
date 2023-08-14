@@ -6,13 +6,20 @@ class Bird(Obstacle):
     def __init__(self, images):
         super().__init__(images, 0)
         self.step_index = 0
-        self.bird_type = random.randint(0,1)
-        if type == 0:
+        self.bird_type = random.randint(0,3)
+        if self.bird_type == 0:
             self.rect.y = BIRD_Y_POS
-        else:
-            self.rect.y = BIRD_Y_POS + 35
-   
 
+        elif self.bird_type == 1:
+            self.rect.y = BIRD_Y_POS + 50
+
+        elif self.bird_type == 2:
+            self.rect.y = BIRD_Y_POS - 80
+
+        elif self.bird_type == 3:
+            self.rect.y = BIRD_Y_POS + 35    
+
+   
     def fly(self):
         self.image = BIRD[0] if self.step_index < 5 else BIRD[1]
 
