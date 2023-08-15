@@ -20,8 +20,12 @@ DINO_DEAD = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDead.png"))
 
 # Run
 RUNNING = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/Run/DinoRun1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/Run/DinoRun2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/correr (1).png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/correr (2).png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/correr (3).png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/correr (4).png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/correr (5).png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/correr (6).png")),
 ]
 RUNNING_SHIELD = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/Run/DinoRunShield1.png")),
@@ -34,8 +38,9 @@ RUNNING_HAMMER = [
 
 # Duck
 DUCKING = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/Duck/DinoDuck1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/Duck/DinoDuck2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/agachar (1).png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/agachar (2).png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/agachar (3).png")),
 ]
 DUCKING_SHIELD = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/Duck/DinoDuckShield1.png")),
@@ -47,7 +52,7 @@ DUCKING_HAMMER = [
 ]
 
 # Jump
-JUMPING = pygame.image.load(os.path.join(IMG_DIR, "Dino/Jump/DinoJump.png"))
+JUMPING = pygame.image.load(os.path.join(IMG_DIR, "goku/pular.png"))
 JUMPING_SHIELD = pygame.image.load(
     os.path.join(IMG_DIR, "Dino/Jump/DinoJumpShield.png")
 )

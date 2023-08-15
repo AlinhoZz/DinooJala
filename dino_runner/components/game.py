@@ -120,13 +120,6 @@ class Game:
         else:  # Tela de restart
             self.screen.blit(ICON, (half_screen_width - 20, half_screen_height - 140))
 
-            # mostrar mensagem de "Press any key to start"
-            # mostrar o score atingido
-            # mostrar death_count
-
-            # Resetar score e game_speed quando uma nova partida for iniciada
-            # Criar método para remover a repetição de código para o texto        
-
         pygame.display.update()
         self.handle_events_on_menu()
 
