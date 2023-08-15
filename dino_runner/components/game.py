@@ -1,29 +1,11 @@
 import pygame
-import random
 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, CLOUD    
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS   
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 
 FONT_STYLE = "freesansbold.ttf"
 TEXT_COLOR_BLACK = (0, 0, 0)    
-
-class Cloud:
-    def __init__(self):
-        self.x = SCREEN_WIDTH + random.randint(800, 1000)
-        self.game_speed = 20
-        self.y = random.randint(50, 100)
-        self.image = CLOUD
-        self.width = self.image.get_width()
-
-    def update(self):
-        self.x -= self.game_speed
-        if self.x < -self.width:
-            self.x = SCREEN_WIDTH + random.randint(2500, 3000)
-            self.y = random.randint(100, 200)
-
-    def draw(self, SCREEN):
-        SCREEN.blit(self.image, (self.x, self.y))
 
 class Game:
     def __init__(self):
@@ -41,7 +23,6 @@ class Game:
         self.y_pos_bg = 380
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
-        self.clouds = []
 
     def execute(self):
         self.running = True
@@ -87,15 +68,6 @@ class Game:
             self.game_speed += 1
 
 
-        if random.randrange(0, 100) < 1:
-            cloud = Cloud()
-            self.clouds.append(cloud)
-        
-        for cloud in self.clouds:
-            cloud.update()
-        self.clouds = [cloud for cloud in self.clouds if cloud.x > -cloud.width]
-
-
     def draw(self):
         self.clock.tick(FPS)
         self.screen.fill((255, 255, 255))  # '#FFFFFF'
@@ -103,12 +75,6 @@ class Game:
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
         self.draw_score()
-        pygame.display.update()
-        pygame.display.flip()
-
-        for cloud in self.clouds:
-            cloud.draw(self.screen)
-
         pygame.display.update()
         pygame.display.flip()
 
@@ -127,11 +93,23 @@ class Game:
         text_rect = text.get_rect()
         text_rect.center = (1000, 50)
         self.screen.blit(text, text_rect)
+    
+
+    def pos_menu(self, text, Y , font_size, color):
+        half_screen_width = SCREEN_WIDTH //2
+        font = pygame.font.Font(FONT_STYLE, font_size)
+        text = font.render(text, True, color)
+        text_rect = text.get_rect()
+        text_rect.center = (half_screen_width, Y)
+        self.screen.blit(text, text_rect)
 
     def show_menu(self):
         self.screen.fill((255, 255, 255))
         half_screen_height = SCREEN_HEIGHT // 2
         half_screen_width = SCREEN_WIDTH // 2
+        if self.death_count > 0:
+            self.pos_menu(f"Partidas jogadas:  {self.death_count}", half_screen_height + 30, 18,(0,0,255))
+            self.pos_menu(f"Pontuação atual:  {self.score}", half_screen_height + 55, 18,(0,0,255))
 
         if self.death_count == 0:  # Tela de inicio
             font = pygame.font.Font(FONT_STYLE, 22)
@@ -151,6 +129,7 @@ class Game:
 
         pygame.display.update()
         self.handle_events_on_menu()
+
 
     def handle_events_on_menu(self):
         for event in pygame.event.get():
