@@ -7,8 +7,6 @@ SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 FPS = 40
 BIRD_Y_POS = 260
-Y_POS_SMALL_CACTUS = 325
-Y_POS_LARGE_CACTUS = 300
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 
 # Assets Constants
@@ -20,16 +18,12 @@ DINO_DEAD = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDead.png"))
 
 # Run
 RUNNING = [
-    pygame.image.load(os.path.join(IMG_DIR, "goku/correr (1).png")),
-    pygame.image.load(os.path.join(IMG_DIR, "goku/correr (2).png")),
-    pygame.image.load(os.path.join(IMG_DIR, "goku/correr (3).png")),
-    pygame.image.load(os.path.join(IMG_DIR, "goku/correr (4).png")),
-    pygame.image.load(os.path.join(IMG_DIR, "goku/correr (5).png")),
-    pygame.image.load(os.path.join(IMG_DIR, "goku/correr (6).png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/59.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/60.png")),
 ]
 RUNNING_SHIELD = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/Run/DinoRunShield1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/Run/DinoRunShield2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/run1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/run2.png")),
 ]
 RUNNING_HAMMER = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/Run/DinoRunHammer1.png")),
@@ -43,8 +37,8 @@ DUCKING = [
     pygame.image.load(os.path.join(IMG_DIR, "goku/agachar (3).png")),
 ]
 DUCKING_SHIELD = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/Duck/DinoDuckShield1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/Duck/DinoDuckShield2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/agachar1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/agachar2.png")),
 ]
 DUCKING_HAMMER = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/Duck/DinoDuckHammer1.png")),
@@ -54,7 +48,7 @@ DUCKING_HAMMER = [
 # Jump
 JUMPING = pygame.image.load(os.path.join(IMG_DIR, "goku/pular.png"))
 JUMPING_SHIELD = pygame.image.load(
-    os.path.join(IMG_DIR, "Dino/Jump/DinoJumpShield.png")
+    os.path.join(IMG_DIR, "goku/pulo1.png")
 )
 JUMPING_HAMMER = pygame.image.load(
     os.path.join(IMG_DIR, "Dino/Jump/DinoJumpHammer.png")
@@ -62,18 +56,18 @@ JUMPING_HAMMER = pygame.image.load(
 
 # Obstacles
 SMALL_CACTUS = [
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/SmallCactus1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/SmallCactus2.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/SmallCactus3.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/small1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/small2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/small1.png")),
 ]
 LARGE_CACTUS = [
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/LargeCactus1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/LargeCactus2.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/LargeCactus3.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/black.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/jiremlarger.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/beeruslarger.png")),
 ]
 BIRD = [
-    pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/fly_1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/fly_2.png")),
 ]
 
 # Doodads
@@ -83,7 +77,7 @@ CLOUD = pygame.image.load(os.path.join(IMG_DIR, "Other/Cloud.png"))
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Other/Shield.png"))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, "Other/Hammer.png"))
 
-BG = pygame.image.load(os.path.join(IMG_DIR, "Other/Track.png"))
+BG = pygame.image.load(os.path.join(IMG_DIR, "goku/nuvem.png"))
 HEART = pygame.image.load(os.path.join(IMG_DIR, "Other/SmallHeart.png"))
 
 DEFAULT_TYPE = "default"
