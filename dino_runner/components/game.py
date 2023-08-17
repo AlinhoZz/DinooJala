@@ -1,13 +1,15 @@
 import pygame
 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
+from pygame import mixer
+
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, CN, MUSIC_DIR
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.power_ups.power_up_manager import PowerUpManager
 from dino_runner.utils.text_utils import draw_message_component
 
 FONT_STYLE = "freesansbold.ttf"
-TEXT_COLOR_BLACK = (0, 0, 0)   
+TEXT_COLOR_ORANGE =  (255, 140, 0) 
 
 class Game:
     def __init__(self):
@@ -18,6 +20,8 @@ class Game:
         self.clock = pygame.time.Clock()
         self.playing = False
         self.running = False
+        self.x_pos_fundopy = 0
+        self.y_pos_fundopy = 0
         self.game_speed = 20
         self.score = 0
         self.color_counter = 0
@@ -27,8 +31,6 @@ class Game:
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
         self.power_up_manager = PowerUpManager()
-        self.background_image = pygame.image.load("dino_runner/assets/goku/cenario.jpg").convert()
-        self.background_image = pygame.transform.scale(self.background_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
     def execute(self):
         self.running = True
@@ -41,9 +43,10 @@ class Game:
 
     def reset_game(self):
         self.player = Dinosaur()
+        mixer.music.play(-1)
         self.obstacle_manager.reset_obstacles()
         self.game_speed = 20
-        self.score = 0    
+        self.score = 0 
 
     def run(self):
         # Game loop: events - update - draw
@@ -63,7 +66,7 @@ class Game:
                 self.running = False
 
     def fase(self):
-        if self.score < 1000 * (self.color_counter + 1):
+        if self.score < 200 * (self.color_counter + 1):
             if self.color_counter % 2 == 0:
                 self.screen.fill((135, 206, 235))
             else:
@@ -81,12 +84,13 @@ class Game:
 
     def update_score(self):
         self.score += 1
-        if self.score % 200 == 0:
+        if self.score % 100 == 0:
             self.game_speed += 1
 
     def draw(self):
         self.clock.tick(FPS)
-        self.fase()
+        self.draw_fundopy()
+        #self.fase()
         self.draw_background()
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
@@ -95,19 +99,27 @@ class Game:
         self.draw_power_up_time()
         pygame.display.update()
         pygame.display.flip()
-        
+
+
+    def draw_fundopy(self):
+        image_width = CN.get_width()
+        self.screen.blit(CN, (self.x_pos_fundopy, self.y_pos_fundopy))
+        self.screen.blit(CN, (image_width + self.x_pos_fundopy, self.y_pos_fundopy))
+        if self.x_pos_fundopy <= -image_width:
+            self.screen.blit(CN, (image_width + self.x_pos_fundopy, self.y_pos_fundopy))
+            self.x_pos_fundopy = 0
+        x = 0.1
+        self.x_pos_fundopy -= (2 - x)
+
 
     def draw_background(self):
         image_width = BG.get_width()
-        self.screen.blit(self.background_image, (0, 0))
         self.screen.blit(BG, (self.x_pos_bg, self.y_pos_bg))
-        
-
-        
         if self.x_pos_bg <= -image_width:
             self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
             self.x_pos_bg = 0
         self.x_pos_bg == self.game_speed
+
 
     def draw_score(self):
         draw_message_component(
@@ -115,6 +127,7 @@ class Game:
             self.screen,
             pos_x_center=1000,
             pos_y_center=50,
+            font_color= (255, 165, 0),
         )
 
     def draw_power_up_time(self):
@@ -122,10 +135,11 @@ class Game:
             time_to_show = round((self.player.power_up_time - pygame.time.get_ticks()) / 1000, 1)
             if time_to_show >= 0:
                 draw_message_component(
-                    f"{self.player.type.capitalize()} enabled for {time_to_show} seconds",
+                    f"PowerUp enabled for {time_to_show} seconds",
                     self.screen,
                     font_size=18,
-                    pos_x_center=500,
+                    font_color = TEXT_COLOR_ORANGE,
+                    pos_x_center=550,
                     pos_y_center=40
                 )
             else:
@@ -142,15 +156,18 @@ class Game:
 
     def show_menu(self):
         self.screen.fill((255, 255, 255))
+        pygame.mixer.music.load(MUSIC_DIR)
+        novo_volume = 0.02
+        mixer.music.set_volume(novo_volume)
         half_screen_height = SCREEN_HEIGHT // 2
         half_screen_width = SCREEN_WIDTH // 2
         if self.death_count > 0:
-            self.pos_menu(f"Partidas jogadas:  {self.death_count}", half_screen_height + 30, 18,(0,0,255))
-            self.pos_menu(f"Pontuação atual:  {self.score}", half_screen_height + 55, 18,(0,0,255))
+            self.pos_menu(f"Partidas jogadas:  {self.death_count}", half_screen_height + 55, 18,(TEXT_COLOR_ORANGE))
+            self.pos_menu(f"Sua Pontuação:  {self.score}", half_screen_height + 80, 18,(TEXT_COLOR_ORANGE))
 
         if self.death_count == 0:  # Tela de inicio
             font = pygame.font.Font(FONT_STYLE, 22)
-            text = font.render("Press any key to start", True, TEXT_COLOR_BLACK)
+            text = font.render("Aperte Qualquer Tecla para Iniciar.  (Semente verde desvia de tudo, menos do Majin Boo!)", True, TEXT_COLOR_ORANGE)
             text_rect = text.get_rect()
             text_rect.center = (half_screen_width, half_screen_height)
             self.screen.blit(text, text_rect)

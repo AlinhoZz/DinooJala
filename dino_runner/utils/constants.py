@@ -2,12 +2,13 @@ import pygame
 import os
 
 # Global Constants
-TITLE = "Chrome Dino Runner"
+TITLE = "Dragon Ball Runner"
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 FPS = 40
 BIRD_Y_POS = 260
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
+MUSIC_DIR = os.path.join(os.path.dirname(__file__), "..", "assets/Other/fundoMusic.mp3")
 
 # Assets Constants
 ICON = pygame.image.load(os.path.join(IMG_DIR, "DinoWallpaper.png"))
@@ -26,10 +27,9 @@ RUNNING_SHIELD = [
     pygame.image.load(os.path.join(IMG_DIR, "goku/run2.png")),
 ]
 RUNNING_HAMMER = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/Run/DinoRunHammer1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/Run/DinoRunHammer2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/run1blue.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/run2blue.png")),
 ]
-
 # Duck
 DUCKING = [
     pygame.image.load(os.path.join(IMG_DIR, "goku/agachar (1).png")),
@@ -41,8 +41,8 @@ DUCKING_SHIELD = [
     pygame.image.load(os.path.join(IMG_DIR, "goku/agachar2.png")),
 ]
 DUCKING_HAMMER = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/Duck/DinoDuckHammer1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/Duck/DinoDuckHammer2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/blueaga1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "goku/blueaga2.png")),
 ]
 
 # Jump
@@ -51,7 +51,7 @@ JUMPING_SHIELD = pygame.image.load(
     os.path.join(IMG_DIR, "goku/pulo1.png")
 )
 JUMPING_HAMMER = pygame.image.load(
-    os.path.join(IMG_DIR, "Dino/Jump/DinoJumpHammer.png")
+    os.path.join(IMG_DIR, "goku/bluepulando.png")
 )
 
 # Obstacles
@@ -80,5 +80,9 @@ HAMMER = pygame.image.load(os.path.join(IMG_DIR, "Other/Hammer.png"))
 BG = pygame.image.load(os.path.join(IMG_DIR, "goku/nuvem.png"))
 HEART = pygame.image.load(os.path.join(IMG_DIR, "Other/SmallHeart.png"))
 
+CN = pygame.image.load(os.path.join(IMG_DIR, "goku/cenario.png"))
+CN = pygame.transform.scale(CN, (SCREEN_WIDTH,SCREEN_HEIGHT))
+
 DEFAULT_TYPE = "default"
 SHIELD_TYPE = "shield"
+HAMMER_TYPE = "hammer"
