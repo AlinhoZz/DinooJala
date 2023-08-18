@@ -43,10 +43,12 @@ class Game:
 
     def reset_game(self):
         self.player = Dinosaur()
+        mixer.music.stop()
         mixer.music.play(-1)
         self.obstacle_manager.reset_obstacles()
         self.game_speed = 20
         self.score = 0 
+        self.color_counter = 0
 
     def run(self):
         # Game loop: events - update - draw
@@ -90,7 +92,7 @@ class Game:
     def draw(self):
         self.clock.tick(FPS)
         self.draw_fundopy()
-        #self.fase()
+        self.fase()
         self.draw_background()
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
@@ -135,7 +137,7 @@ class Game:
             time_to_show = round((self.player.power_up_time - pygame.time.get_ticks()) / 1000, 1)
             if time_to_show >= 0:
                 draw_message_component(
-                    f"PowerUp enabled for {time_to_show} seconds",
+                    f" Tempo de PowerUp restante: {time_to_show} segundos",
                     self.screen,
                     font_size=18,
                     font_color = TEXT_COLOR_ORANGE,
